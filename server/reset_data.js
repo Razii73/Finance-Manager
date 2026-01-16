@@ -31,16 +31,16 @@ const resetData = () => {
             else console.log("Cleared student_years.");
         });
 
-        // 2. Reset Admin to Default
-        const defaultHash = bcrypt.hashSync('admin123', 10);
-        db.run("UPDATE admin SET username = 'admin', password_hash = ? WHERE id = 1", [defaultHash], (err) => {
-            if (err) console.error("Error resetting admin:", err);
-            else console.log("Reset admin to default (admin / admin123).");
-        });
+        // 2. Reset Admin to Default (Delete all and recreate)
+        db.run("DELETE FROM admin", (err) => {
+            if (err) console.error("Error clearing admin:", err);
+            else console.log("Cleared old admin records.");
 
-        // Also ensure if admin was deleted, it's recreated (though id=1 update handles the main case, insert ignores if exists)
-        db.run("INSERT OR IGNORE INTO admin (id, username, password_hash) VALUES (1, 'admin', ?)", [defaultHash], (err) => {
-            if (err) console.error("Error seeding admin:", err);
+            const defaultHash = bcrypt.hashSync('admin123', 10);
+            db.run("INSERT INTO admin (username, password_hash) VALUES (?, ?)", ['admin', defaultHash], (err) => {
+                if (err) console.log(err);
+                else console.log("Reset admin to default (admin / admin123).");
+            });
         });
 
         console.log("Factory Reset Complete.");
