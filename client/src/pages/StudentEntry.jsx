@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ArrowLeft, Upload, Save, FileText } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const API_URL = 'http://localhost:5001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 export default function StudentEntry() {
     const navigate = useNavigate();

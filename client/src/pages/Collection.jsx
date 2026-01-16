@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 export default function Collection() {
     const [history, setHistory] = useState([]);
@@ -95,8 +95,8 @@ export default function Collection() {
                                         type="button"
                                         onClick={() => setForm({ ...form, payment_mode: mode })}
                                         className={`flex-1 py-3 rounded-xl capitalize font-medium transition-all ${form.payment_mode === mode
-                                                ? 'bg-slate-900 text-white shadow-md'
-                                                : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                                            ? 'bg-slate-900 text-white shadow-md'
+                                            : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                                             }`}
                                     >
                                         {mode}

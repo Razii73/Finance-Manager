@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, X, ChevronRight, Check, Trash2 } from 'lucide-react';
 
-const API_URL = 'http://localhost:5001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 export default function Configuration() {
     const [years, setYears] = useState([]);
