@@ -378,6 +378,28 @@ app.get("/api/students", authenticateToken, (req, res) => {
 
     db.all(sql, params, (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
+        res.json(rows);
+    });
+});
+
+// Update Student Details (Name, Year, Dept)
+app.put("/api/students/:id", authenticateToken, (req, res) => {
+    const { id } = req.params;
+    const { name, year_id, department_id } = req.body;
+
+    const sql = "UPDATE students SET name = ?, year_id = ?, department_id = ? WHERE id = ?";
+    db.run(sql, [name, year_id, department_id, id], function (err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true });
+    });
+});
+
+// Delete Student
+app.delete("/api/students/:id", authenticateToken, (req, res) => {
+    const { id } = req.params;
+    db.run("DELETE FROM students WHERE id = ?", [id], function (err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true });
     });
 });
 
