@@ -19,7 +19,13 @@ export default function Login() {
             localStorage.setItem('username', res.data.username);
             window.location.href = '/'; // Force reload to clear state or just simple redirect
         } catch (err) {
-            setError("Invalid credentials");
+            if (!err.response) {
+                setError("Network Error: Check URL/Connection");
+            } else if (err.response.status === 401) {
+                setError("Invalid credentials");
+            } else {
+                setError("Login failed. Try again.");
+            }
         }
     };
 
