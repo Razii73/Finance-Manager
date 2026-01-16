@@ -260,7 +260,6 @@ export default function StudentStatus() {
                                                                 <th className="px-6 py-3 text-right">Paid</th>
                                                                 <th className="px-6 py-3 text-right">Balance</th>
                                                                 <th className="px-6 py-3 text-center">Status</th>
-                                                                <th className="px-6 py-3 text-center">Actions</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody className="divide-y divide-slate-50">
@@ -277,7 +276,6 @@ export default function StudentStatus() {
                                                                 <td colSpan="2" className="px-6 py-4 text-right text-sm uppercase tracking-wider font-extrabold text-slate-800">Total</td>
                                                                 <td className="px-6 py-4 text-right font-mono font-bold text-black text-base">{totalPaid}</td>
                                                                 <td className="px-6 py-4 text-right font-mono font-bold text-black text-base">{totalBalance}</td>
-                                                                <td className="px-6 py-4"></td>
                                                                 <td className="px-6 py-4"></td>
                                                             </tr>
                                                         </tbody>
