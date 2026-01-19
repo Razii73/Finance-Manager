@@ -454,7 +454,11 @@ app.get("/api/reports/breakdown", authenticateToken, async (req, res) => {
     }
 });
 
-const PORT = 5001;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = 5001;
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
