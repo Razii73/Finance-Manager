@@ -95,7 +95,10 @@ app.get("/api/years", authenticateToken, (req, res) => {
 app.post("/api/years", authenticateToken, (req, res) => {
     const { name } = req.body;
     db.run("INSERT INTO student_years (name) VALUES (?)", [name], function (err) {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+            console.error("DB Insert Error:", err.message);
+            return res.status(500).json({ error: err.message });
+        }
         res.json({ id: this.lastID, name });
     });
 });

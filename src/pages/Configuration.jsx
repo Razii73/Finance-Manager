@@ -67,7 +67,10 @@ export default function Configuration() {
             setYearModalOpen(false);
             fetchYears(); // Refresh list
             setActiveYearId(res.data.id); // Auto switch to new year
-        } catch (e) { alert('Error adding year'); }
+        } catch (e) {
+            console.error(e);
+            alert('Error adding year: ' + (e.response?.data?.error || e.message));
+        }
     };
 
     const handleAddDeptToYear = async (e) => {
