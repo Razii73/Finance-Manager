@@ -180,7 +180,7 @@ app.post("/api/students", authenticateToken, (req, res) => {
 
     // Logic: Find the most common/recent 'total_fee' to use as default for new students
     // This supports the "Global Budget" requirement without a separate settings table
-    const getFeeSql = `SELECT total_fee FROM students ORDER BY updated_at DESC LIMIT 1`;
+    const getFeeSql = `SELECT total_fee FROM students ORDER BY id DESC LIMIT 1`;
 
     db.get(getFeeSql, [], (err, row) => {
         const defaultFee = row ? row.total_fee : 0;
